@@ -52,13 +52,14 @@ void MeshMaterialFilter::set_bins(span<int32_t> bins)
   for (int64_t i = 0; i < bins.size() / 2; ++i) {
     int32_t element = bins[2 * i];
     int32_t mat_id = bins[2 * i + 1];
-    auto search = model::material_map.find(mat_id);
-    if (search == model::material_map.end()) {
-      fatal_error(fmt::format(
-        "Could not find material {} specified on tally filter.", mat_id));
-    }
-    int32_t mat_index = search->second;
-    element_mats.push_back({element, mat_index});
+    // auto search = model::material_map.find(mat_id);
+    // if (search == model::material_map.end()) {
+    //   fatal_error(fmt::format(
+    //     "Could not find material {} specified on tally filter.", mat_id));
+    // }
+    // int32_t mat_index = search->second;
+    // element_mats.push_back({element, mat_index});
+    element_mats.push_back({element, mat_id});
   }
 
   this->set_bins(std::move(element_mats));
